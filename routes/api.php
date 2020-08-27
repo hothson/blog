@@ -22,3 +22,6 @@ Route::get('products/{product}', 'Api\ProductController@show');
 Route::post('products', 'Api\ProductController@store');
 Route::put('products/{product}', 'Api\ProductController@update');
 Route::delete('products/{product}', 'Api\ProductController@destroy');
+
+
+Route::get('corona', 'Api\CoronaController@index');
