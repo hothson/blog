@@ -12,7 +12,7 @@
 <body>
 
     <!-- React root DOM -->
-    <div id="example">
+    <div id="app">
     </div>
 
     <!-- React JS -->

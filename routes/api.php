@@ -23,5 +23,11 @@ Route::post('products', 'Api\ProductController@store');
 Route::put('products/{product}', 'Api\ProductController@update');
 Route::delete('products/{product}', 'Api\ProductController@destroy');
 
-
 Route::get('corona', 'Api\CoronaController@index');
+
+Route::get('projects', 'ProjectController@index');
+Route::post('projects', 'ProjectController@store');
+Route::get('projects/{id}', 'ProjectController@show');
+Route::put('projects/{project}', 'ProjectController@markAsCompleted');
+Route::post('tasks', 'TaskController@store');
+Route::put('tasks/{task}', 'TaskController@markAsCompleted');
