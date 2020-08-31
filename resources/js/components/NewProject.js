@@ -5,7 +5,7 @@ class NewProject extends Component {
     constructor() {
         super()
         this.state = {
-            name: 'aaa',
+            name: '',
             description: '',
             errors: [],
         }
@@ -16,7 +16,6 @@ class NewProject extends Component {
         this.setState({
             [event.target.name]: event.target.value,
         })
-        
     }
 
     handleCreateNewProject(event) {

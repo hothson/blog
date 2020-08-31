@@ -39,6 +39,9 @@ class ProjectController extends Controller
         $project = Project::with(["tasks" => function ($query) {
 			$query->where('is_completed', false);
 		}])->find($id);
+		if (!$project) {
+			return response()->json("Not found", 404);
+		} 
 
         return $project->toJson();
       }
