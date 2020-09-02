@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { defaultsDeep } from 'lodash'
 
-class ProjectsList extends Component {
+class SingleProject extends Component {
     constructor () {
         super()
         this.state = {
@@ -19,6 +19,7 @@ class ProjectsList extends Component {
     }
 
     componentDidMount () {
+        console.log(222, this.props);
         const projectId = this.props.match.params.id;
 
         axios.get(`/api/projects/${projectId}`).then(response => {
@@ -84,6 +85,19 @@ class ProjectsList extends Component {
         }
     }
 
+    handleMarkTaskAsCompleted(taskId) {
+        const { history } = this.props;
+
+        axios.put(`api/tasks/${taskId}`)
+            .then(response => {
+                this.setState(prevState => ({
+                    tasks: this.state.tasks.filter(task => {
+                        return task.id != taskId
+                    })
+                }))
+            })
+    }
+
     render () {
         const { project, tasks} = this.state
         return (
@@ -121,7 +135,8 @@ class ProjectsList extends Component {
                                         <li
                                             className='list-group-item d-flex justify-content-between align-items-center' key={task.id}>
                                             {task.title}
-                                            <button className='btn btn-primary btn-sm'>
+                                            <button className='btn btn-primary btn-sm'
+                                                onClick={this.handleMarkTaskAsCompleted.bind(this, task.id)}>
                                                 Mark as completed
                                             </button>
                                         </li>
@@ -136,4 +151,4 @@ class ProjectsList extends Component {
     }
 }
 
-export default ProjectsList
+export default SingleProject

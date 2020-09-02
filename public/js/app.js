@@ -70267,15 +70267,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var ProjectsList = /*#__PURE__*/function (_Component) {
-  _inherits(ProjectsList, _Component);
+var SingleProject = /*#__PURE__*/function (_Component) {
+  _inherits(SingleProject, _Component);
 
-  var _super = _createSuper(ProjectsList);
+  var _super = _createSuper(SingleProject);
 
-  function ProjectsList() {
+  function SingleProject() {
     var _this;
 
-    _classCallCheck(this, ProjectsList);
+    _classCallCheck(this, SingleProject);
 
     _this = _super.call(this);
     _this.state = {
@@ -70291,11 +70291,12 @@ var ProjectsList = /*#__PURE__*/function (_Component) {
     return _this;
   }
 
-  _createClass(ProjectsList, [{
+  _createClass(SingleProject, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
+      console.log(222, this.props);
       var projectId = this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/projects/".concat(projectId)).then(function (response) {
         _this2.setState({
@@ -70358,8 +70359,26 @@ var ProjectsList = /*#__PURE__*/function (_Component) {
       }
     }
   }, {
+    key: "handleMarkTaskAsCompleted",
+    value: function handleMarkTaskAsCompleted(taskId) {
+      var _this4 = this;
+
+      var history = this.props.history;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("api/tasks/".concat(taskId)).then(function (response) {
+        _this4.setState(function (prevState) {
+          return {
+            tasks: _this4.state.tasks.filter(function (task) {
+              return task.id != taskId;
+            })
+          };
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this5 = this;
+
       var _this$state = this.state,
           project = _this$state.project,
           tasks = _this$state.tasks;
@@ -70400,16 +70419,17 @@ var ProjectsList = /*#__PURE__*/function (_Component) {
           className: "list-group-item d-flex justify-content-between align-items-center",
           key: task.id
         }, task.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-          className: "btn btn-primary btn-sm"
+          className: "btn btn-primary btn-sm",
+          onClick: _this5.handleMarkTaskAsCompleted.bind(_this5, task.id)
         }, "Mark as completed"));
       })))))));
     }
   }]);
 
-  return ProjectsList;
+  return SingleProject;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (ProjectsList);
+/* harmony default export */ __webpack_exports__["default"] = (SingleProject);
 
 /***/ }),
 
