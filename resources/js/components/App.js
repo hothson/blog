@@ -13,7 +13,7 @@ class App extends Component {
                 <div>
                     <Header />
                     <Switch>
-                        <Route exact path="/" component={ProjectsList} />
+                        <Route exact path="/projects" component={ProjectsList} />
                         <Route exact path="/create" component={NewProject} />
                         <Route exact path="/:id" component={SingleProject} />
                     </Switch>
@@ -23,4 +23,4 @@ class App extends Component {
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// ReactDOM.render(<App />, document.getElementById('app'));

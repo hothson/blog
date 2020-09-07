@@ -25,4 +25,13 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::view('/{path?}', 'app');
+// Route::view('/{path?}', 'app');
+
+Route::get('payment', 'PaymentController@index');
+Route::post('charge', 'PaymentController@charge');
+Route::get('paymentsuccess', 'PaymentController@payment_success');
+Route::get('paymenterror', 'PaymentController@payment_error');
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/images', 'ImageController@getImages')->name('images');
+Route::post('/upload', 'ImageController@postUpload')->name('uploadfile');
