@@ -17,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Route::get('/chart', function () {
-//     return view('chart');
-// });
+Route::get('/chart', function () {
+    return view('chart');
+});
 
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::view('/{path?}', 'app');
 
@@ -32,6 +30,13 @@ Route::post('charge', 'PaymentController@charge');
 Route::get('paymentsuccess', 'PaymentController@payment_success');
 Route::get('paymenterror', 'PaymentController@payment_error');
 
+// S3 AWS
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/images', 'ImageController@getImages')->name('images');
 Route::post('/upload', 'ImageController@postUpload')->name('uploadfile');
+
+Route::get('/abstract', function () {
+    return view('abstract');
+});
+
+
